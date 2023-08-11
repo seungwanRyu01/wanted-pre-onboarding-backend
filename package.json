@@ -1,0 +1,19 @@
+{
+  "name": "wanted-pre-onboarding-backend",
+  "version": "1.0.0",
+  "description": "wanted-pre-onboarding-backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seungwanRyu01/wanted-pre-onboarding-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yarn": "^1.22.19"
+  },
+  "packageManager": "yarn@3.6.1"
+}
