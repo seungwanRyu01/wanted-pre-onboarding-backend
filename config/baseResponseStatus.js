@@ -4,6 +4,7 @@ module.exports = {
     TOKEN_VERIFICATION_SUCCESS : { "isSuccess": true, "code": 1001, "message":"JWT 토큰 검증 성공" },
     REGISTER_SUCCESS : { "isSuccess": true, "code": 1002, "message":"회원가입 성공" },
     LOGIN_SUCCESS : { "isSuccess": true, "code": 1003, "message":"로그인 성공" },
+    BOARD_INSERT_SUCCESS : { "isSuccess": true, "code": 1004, "message":"게시글 작성 성공" },
 
     // Common
     TOKEN_EMPTY : { "isSuccess": false, "code": 2000, "message":"JWT 토큰을 입력해주세요." },
@@ -14,6 +15,9 @@ module.exports = {
     SIGN_EMAIL_ERROR_TYPE : { "isSuccess": false, "code": 2002, "message":"이메일에 '@'를 포함해주세요." },
     SIGN_PASSWORD_EMPTY : { "isSuccess": false, "code": 2003, "message": "비밀번호를 입력해주세요." },
     SIGN_PASSWORD_LENGTH : { "isSuccess": false, "code": 2004, "message":"비밀번호는 최소 8자리 이상 입력해주세요." },
+    
+    BOARD_TITLE_EMPTY : { "isSuccess": false, "code": 2005, "message": "제목을 입력해주세요." },
+    BOARD_DESCRIPTION_EMPTY : { "isSuccess": false, "code": 2006, "message": "내용을 입력해주세요." },
 
     // Response error
     SIGNUP_REDUNDANT_EMAIL : { "isSuccess": false, "code": 3001, "message":"이미 가입된 이메일 주소입니다. 다른 이메일을 입력하여 주세요." },
