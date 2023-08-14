@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["crypto", "npm:1.0.1"],\
             ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
+            ["fs", "npm:0.0.1-security"],\
             ["jsonwebtoken", "npm:9.0.1"],\
             ["method-override", "npm:3.0.0"],\
             ["mysql2", "npm:3.6.0"],\
@@ -976,6 +977,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/fresh-npm-0.5.2-ad2bb4c0a2-13ea8b08f9.zip/node_modules/fresh/",\
           "packageDependencies": [\
             ["fresh", "npm:0.5.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["fs", [\
+        ["npm:0.0.1-security", {\
+          "packageLocation": "./.yarn/cache/fs-npm-0.0.1-security-5060b47e87-53c6230e1f.zip/node_modules/fs/",\
+          "packageDependencies": [\
+            ["fs", "npm:0.0.1-security"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2558,6 +2568,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["crypto", "npm:1.0.1"],\
             ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
+            ["fs", "npm:0.0.1-security"],\
             ["jsonwebtoken", "npm:9.0.1"],\
             ["method-override", "npm:3.0.0"],\
             ["mysql2", "npm:3.6.0"],\
