@@ -50,44 +50,25 @@ exports.getElementContents = async function (req, res) {
     }
 };
 
-// /**
-//  * API No. 6
-//  * API Name : 게시글 수정 API
-//  * [PATCH] /contents
-//  */
-// exports.patchContents = async function (req, res) {
+/**
+ * API No. 6
+ * API Name : 게시글 수정 API
+ * [PATCH] /contents/{boardIdx}
+ */
+exports.patchContents = async function (req, res) {
+    const userIdFromJWT = req.verifiedToken.userId;
+    const boardIdx = req.params.boardIdx;
 
-//     const userIdFromJWT = req.verifiedToken.userId;
-//     const userIdx = req.params.userIdx;
-//     const {reviewId, score, contents} = req.body;
-//     const {reviewType} = req.query;
+    const [userIdxFromBoard] = await boardProvider.getUserIdxFromBoard(boardIdx);
 
-//     const imageUrl = await Promise.all(
-//         req.files.map(async(val) => val.location)
-//     )
-
-//     if(!userIdx) return res.send(errResponse(baseResponse.REVIEW_USERIDX_EMPTY));
-//     if (userIdFromJWT != userIdx) {
-//         return res.send(errResponse(baseResponse.USER_ID_NOT_MATCH));
-//     } else {
-//         if (!reviewType) return res.send(errResponse(baseResponse.EDIT_REVIEW_TYPE_EMPTY));
-//         if (reviewType !== 'REVIEW' && reviewType !== 'REVIEW_IMAGE') return res.send(errResponse(baseResponse.EDIT_REVIEW_TYPE_ERROR));
-//         if (reviewType === 'REVIEW') {
-//             if(!reviewId) return res.send(errResponse(baseResponse.EDIT_REVIEWID_EMPTY));
-//             if(!score) return res.send(errResponse(baseResponse.EDIT_SCORE_EMPTY));
-//             if(!contents) return res.send(errResponse(baseResponse.EDIT_CONTENTS_EMPTY));
-
-//             const editUserReview = await reviewService.editReview(reviewId, score, contents);
-//             const result = {reviewId, score, contents}
-//             return res.send(response(editUserReview, result));
-//         } else {
-//             if(!reviewId) return res.send(errResponse(baseResponse.EDIT_REVIEWID_EMPTY));
-//             if(!imageUrl) return res.send(errResponse(baseResponse.EDIT_IMAGE_EMPTY));
-//             const reviewImageResponse = await reviewService.editReviewImage(reviewId, imageUrl);
-//             return res.send(response(reviewImageResponse));
-//         }
-//     }
-// }
+    if (userIdFromJWT !== userIdxFromBoard.user_index) {
+        return res.send(errResponse(baseResponse.BOARD_USERIDX_NOT_MATCH));
+    } else {
+        const { title, description } = req.body;
+        const editBoard = await boardService.editBoard(title, description, boardIdx);
+        return res.send(response(editBoard));
+    }
+}
 
 // /**
 //  * API No. 7

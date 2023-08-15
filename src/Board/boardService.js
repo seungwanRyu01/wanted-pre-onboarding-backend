@@ -19,23 +19,21 @@ exports.createContents = async ( userIdFromJWT, title, description ) => {
     }
 }
 
-// // 리뷰 수정
-// exports.editReview = async (reviewId, score, contents) => {
-
-//     const connection = await pool.getConnection(async (conn) => conn);
-//     try {
-//         await connection.beginTransaction();
-//         const editReviewResult = await reviewDao.updateUserReview(connection, score, contents, reviewId);
-//         await connection.commit();
-
-//     } catch (err) {
-//         logger.error(`App - editReview Service error\n: ${err.message}`);
-//         return errResponse(baseResponse.DB_ERROR);
-//     } finally {
-//         connection.release();
-//         return response(baseResponse.SUCCESS);
-//     }
-// }
+// 리뷰 수정
+exports.editBoard = async (title, description, boardIdx) => {
+    const connection = await pool.getConnection(async (conn) => conn);
+    try {
+        await connection.beginTransaction();
+        await boardDao.updateBoard(connection, title, description, boardIdx);
+        await connection.commit();
+        return response(baseResponse.BOARD_EDIT_SUCCESS);
+    } catch (err) {
+        logger.error(`App - editBoard Service error\n: ${err.message}`);
+        return errResponse(baseResponse.DB_ERROR);
+    } finally {
+        await connection.release();
+    }
+}
 
 // // 리뷰 삭제 
 // exports.deleteReview = async (reviewId) => {

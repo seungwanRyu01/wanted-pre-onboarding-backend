@@ -16,3 +16,11 @@ exports.getBoardById = async function (board_index) {
     await connection.release();
     return contentsResult;
 }
+
+// 게시글 작성자 인덱스 조회
+exports.getUserIdxFromBoard = async function (boardIdx) {
+    const connection = await pool.getConnection(async (conn) => conn);
+    const userIdxResult = await boardDao.getUserIdx(connection, boardIdx);
+    await connection.release();
+    return userIdxResult;
+}

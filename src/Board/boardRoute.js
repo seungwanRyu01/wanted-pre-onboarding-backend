@@ -11,8 +11,8 @@ module.exports = function (route) {
     // 5. 특정 게시글 조회 API
     route.get('/element-contents', board.getElementContents);
 
-    // // 6. 게시글 수정 API
-    // route.patch('/contents', jwtMiddleware, board.patchContents);
+    // 6. 게시글 수정 API
+    route.patch('/contents/:boardIdx', jwtMiddleware, board.patchContents);
 
     // // 7. 게시글 삭제 API
     // route.delete('/contents', jwtMiddleware, board.deleteContents);
