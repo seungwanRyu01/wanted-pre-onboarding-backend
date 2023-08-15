@@ -20,59 +20,35 @@ exports.postContents = async function (req, res) {
     return res.send(contentsResponse);
 }
 
-// /**
-//  * API No. 4
-//  * API Name : 게시글 목록 조회 API
-//  * [GET] /whole-contents
-//  */
-// exports.getWholeContents = async function (req, res) {
-//     /**
-//      * Query String: name
-//      */
-//     const name = req.query.name;
-//     const productListResult = await productProvider.productsInfo();
-//     const nameValue = await Promise.all(productListResult.map(async(val) => val.name))
+/**
+ * API No. 4
+ * API Name : 게시글 목록 조회 API
+ * [GET] /whole-contents
+ */
+exports.getWholeContents = async function (req, res) {
+    const { page, pageSize } = req.query;
+    if (page && pageSize) {
+        const contentsResult = await boardProvider.getWholeContents(page, pageSize);
+        return res.send(response(baseResponse.BOARD_PAGING_VIEW_SUCCESS, contentsResult));
+    } else {
+        return res.send(errResponse(baseResponse.BOARD_PAGING_EMPTY));
+    }
+};
 
-//     if (!name) {
-//         // 상품 전체 조회
-//         return res.send(response(baseResponse.SUCCESS, productListResult));
-//     } else {
-//         // 상품 검색어 조회
-//         const nameResult = await productProvider.productsInfo(name);
-//         for (i=0; i<nameValue.length; i++) {
-//             if (!nameValue[i].includes(name)) {
-//                 return res.send(errResponse(baseResponse.SEARCH_KEYWORD_INCORRECT));
-//             } else {
-//                 return res.send(response(baseResponse.SUCCESS, nameResult));
-//             }
-//         }
-//     }
-// };
-
-// /**
-//  * API No. 5
-//  * API Name : 특정 게시글 조회 API
-//  * [GET] /element-contents
-//  */
-// exports.getElementContents = async function (req, res) {
-//     /**
-//      * Path Variable : productIdx
-//      */
-//     const productIdx = req.params.productIdx;
-//     const productListResult = await productProvider.productsInfo();
-//     const productsIdList = await Promise.all(productListResult.map(async(val) => val.coupangIdx))
-
-//     if (!productIdx) {
-//         return res.send(errResponse(baseResponse.PRODUCT_PRODUCTID_EMPTY));
-//     } else {
-//         if (!productsIdList.includes(parseInt(productIdx))) {
-//             return res.send(errResponse(baseResponse.PRODUCT_INNER_LIST_EMPTY));
-//         } else {
-//             const productByProductId = await productProvider.viewProductById(productIdx);
-//             return res.send(response(baseResponse.SUCCESS, productByProductId));
-//         }
-//     }
-// };
+/**
+ * API No. 5
+ * API Name : 특정 게시글 조회 API
+ * [GET] /element-contents
+ */
+exports.getElementContents = async function (req, res) {
+    const board_index = req.query.board_index;
+    if (!board_index) {
+        return res.send(errResponse(baseResponse.BOARD_INDEX_EMPTY));
+    } else {
+        const boardByBoardIdx = await boardProvider.getBoardById(board_index);
+        return res.send(response(baseResponse.BOARD_ELEMENT_VIEW_SUCCESS, boardByBoardIdx));
+    }
+};
 
 // /**
 //  * API No. 6
