@@ -8,6 +8,7 @@ module.exports = {
     BOARD_PAGING_VIEW_SUCCESS : { "isSuccess": true, "code": 1005, "message":"게시글 목록 조회 성공" },
     BOARD_ELEMENT_VIEW_SUCCESS : { "isSuccess": true, "code": 1006, "message":"특정 게시글 조회 성공" },
     BOARD_EDIT_SUCCESS : { "isSuccess": true, "code": 1007, "message":"게시글 수정 성공" },
+    BOARD_DELETE_SUCCESS : { "isSuccess": true, "code": 1008, "message":"게시글 삭제 성공" },
 
     // Common
     TOKEN_EMPTY : { "isSuccess": false, "code": 2000, "message":"JWT 토큰을 입력해주세요." },
