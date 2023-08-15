@@ -8,7 +8,6 @@ const { errResponse } = require("../../config/response");
  * [POST] /users
  */
 exports.postUsers = async function (req, res) {
-
     const { email, password } = req.body;
 
     // 이메일 형식 체크
@@ -29,7 +28,6 @@ exports.postUsers = async function (req, res) {
  * [POST] /login
  */
 exports.login = async function (req, res) {
-
     const { email, password } = req.body;
 
     // 이메일 형식 체크
