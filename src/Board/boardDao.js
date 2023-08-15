@@ -39,10 +39,19 @@ async function updateBoard(connection, title, description, boardIdx) {
     const updateBoardQuery = `
         UPDATE Board 
         SET title = COALESCE(?, title), description = COALESCE(?, description) 
-        WHERE idx = ? AND is_delete = 0
+        WHERE idx = ? AND is_delete = 0;
     `;
     const [updateRows] = await connection.query(updateBoardQuery, [title, description, boardIdx]);
     return updateRows;
+}
+
+// 게시글 삭제
+async function deleteBoard(connection, boardIdx) {
+    const deleteBoardQuery = `
+        UPDATE Board SET is_delete = 1 WHERE idx = ?;
+    `;
+    const [deleteRows] = await connection.query(deleteBoardQuery, boardIdx);
+    return deleteRows;
 }
 
 module.exports = {
@@ -50,5 +59,6 @@ module.exports = {
     getPagingContents,
     getElementContent,
     getUserIdx,
-    updateBoard
+    updateBoard,
+    deleteBoard
 }

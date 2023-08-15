@@ -14,6 +14,6 @@ module.exports = function (route) {
     // 6. 게시글 수정 API
     route.patch('/contents/:boardIdx', jwtMiddleware, board.patchContents);
 
-    // // 7. 게시글 삭제 API
-    // route.delete('/contents', jwtMiddleware, board.deleteContents);
+    // 7. 게시글 삭제 API
+    route.delete('/contents/:boardIdx', jwtMiddleware, board.deleteContents);
 };
