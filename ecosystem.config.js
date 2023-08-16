@@ -5,7 +5,7 @@ module.exports = {
             script: 'yarn node index.js',
             cwd: '/home/ubuntu/dev/wanted-pre-onboarding-backend',
             instances: 1,
-            autorestart: true,
+            autorestart: false,
             watch: true
         },
     ],
